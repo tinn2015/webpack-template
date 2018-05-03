@@ -11,7 +11,7 @@ module.exports = {
   mode: 'production',
   entry: './src/main.js',
   output: {
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../dist/js'),
     filename: '[name].[chunkhash].js'
   },
   module: {
@@ -74,12 +74,31 @@ module.exports = {
       parallel: true
     }),
     new ExtractTextPlugin({
-      filename: 'css/[name].css',
+      filename: '../css/[name].css',
       allChunks: true
     }),
-    new OptimizeCSSPlugin(), 
+    new OptimizeCSSPlugin(),
+    new webpack.optimize.SplitChunksPlugin({
+      chunks: "all",
+      minSize: 20000,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      name: true,
+      cacheGroups: {
+        default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true,
+        },
+        vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            priority: -10
+        }
+    }
+    }),
     new HtmlWebpackPlugin({
-      filename: 'index.html', //生成的html的文件名
+      filename: '../index.html', //生成的html的文件名
       template: 'index.html', //依据的模板
       inject: true, //注入的js文件将会被放在body标签中,当值为'head'时，将被放在head标签中
       minify: {  //压缩配置
