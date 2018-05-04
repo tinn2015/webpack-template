@@ -50,6 +50,17 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        use: [
+          {
+            loader: 'url-loader',
+            query: {
+              limit: 10000
+            }
+          }
+        ]
       }
     ]
   },
@@ -65,7 +76,7 @@ module.exports = {
     }
   },
   // sourcemap 开发代码与实际代码不一致时帮助我们debug到原始开发代码的技术
-  devtool: 'source-map',
+  devtool: false,
   target: 'web',
   plugins: [
     new CleanWebpackPlugin(['dist'], {root: path.resolve(__dirname, '../')}),

@@ -1,11 +1,11 @@
 const path = require('path')
 const webpack = require('webpack')
 const {VueLoaderPlugin} = require('vue-loader')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+// const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -78,7 +78,7 @@ module.exports = {
   resolve: {
     modules: ['node_modules'],
     extensions: [
-      ".js", ".json", ".vue", ".css"
+      '.js', '.json', '.vue', '.css'
     ],
     alias: {
       '$src': path.resolve(__dirname, '../src'),
@@ -89,7 +89,7 @@ module.exports = {
   devtool: '#cheap-module-eval-source-map',
   target: 'web',
   devServer: {
-    publicPath:'/',
+    publicPath: '/',
     host: '127.0.0.1',
     port: 8090,
     historyApiFallback: true,
@@ -99,8 +99,8 @@ module.exports = {
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       // filename: '../index.html', //生成的html的文件名
-      template: 'index.html', //依据的模板
-      inject: true, //注入的js文件将会被放在body标签中,当值为'head'时，将被放在head标签中
+      template: 'index.html', // 依据的模板
+      inject: true // 注入的js文件将会被放在body标签中,当值为'head'时，将被放在head标签中
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
   ]
