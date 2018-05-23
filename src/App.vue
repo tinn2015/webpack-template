@@ -5,7 +5,7 @@
       <li style='height: 30px;'>dasdasdas</li>
       <li style='height: 30px;'>dasdasdas</li>
       <li style='height: 30px;'>dasdasdas</li>
-      <li style='height: 30px;' ref="lastLi" >dads<input type="text" id="lastli" style="opacity:0"></li>
+      <li style='height: 30px;' id="lastLi" >dads</li>
     </ul>
     <router-link to="/home">home</router-link>
     <router-link to="/">back</router-link>
@@ -22,7 +22,7 @@ export default {
     }
   },
   mounted () {
-    this.$el.querySelector('#lastli').focus()
+    this.$el.querySelector('#lastLi').scrollIntoView()
   }
 }
 </script>
