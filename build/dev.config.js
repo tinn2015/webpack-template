@@ -6,7 +6,7 @@ const {VueLoaderPlugin} = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-
+const utils = require('./util.js')
 module.exports = {
   mode: 'development',
   entry: './src/main.js',
@@ -46,29 +46,28 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'css-loader'
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            query: {
-              limit: 10000
-            }
-          }
-        ]
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+        }
+      },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+        }
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            query: {
-              limit: 10000
-            }
-          }
-        ]
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+        }
       }
     ]
   },
