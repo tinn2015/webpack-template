@@ -1,6 +1,23 @@
 <template>
   <li class="vue-tree-item">
     <div class="item-wrapper" :class="selfFloor" onselectstart="return false;">
+      <!-- <span
+        v-if="options.checkbox"
+        class="item-checkbox"
+        :class="[labelIcon]"
+        @click="toggleChecked"
+      >
+      </span> -->
+      <div style="display: flex; align-items: center">
+        <img v-if="options.checkbox" @click="toggleChecked" class="item-checkbox" :src="labelIcon" alt="">
+        <span
+          class="item-label"
+          :class="isBold"
+          @click="handle"
+        >
+          {{ model[options.label] }}
+        </span>
+      </div>
       <span
         v-if="isFolder"
         class="item-toggle"
@@ -12,21 +29,6 @@
         v-else
         class="item-toggle"
       />
-      <!-- <span
-        v-if="options.checkbox"
-        class="item-checkbox"
-        :class="[labelIcon]"
-        @click="toggleChecked"
-      >
-      </span> -->
-      <img v-if="options.checkbox" @click="toggleChecked" class="item-checkbox" :src="labelIcon" alt="">
-      <span
-        class="item-label"
-        :class="isBold"
-        @click="handle"
-      >
-        {{ model[options.label] }}
-      </span>
     </div>
     <ul v-if="isFolder" v-show="open" class="vue-tree-list">
       <tree-item
